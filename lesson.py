@@ -53,22 +53,24 @@ def generate_lesson_with_retry(day_num, topic, past_context, retries=3):
     model = genai.GenerativeModel('gemini-2.5-flash')
     
     prompt = f"""
-    You are 'Muddaris_Fusha_365', an expert Modern Standard Arabic teacher.
+    You are 'Mudarris365', an expert Modern Standard Arabic teacher.
     Today is Day {day_num} of 365. 
     Today's Topic: {topic}
     
-    Here are the recent lessons the student has learned (use this to know what vocabulary they understand):
+    Here are the recent lessons the student has learned:
     {past_context}
     
     INSTRUCTIONS:
     1. Generate today's lesson in strictly formatted Markdown.
-    2. ONLY use Arabic vocabulary and grammar concepts the student has already learned in the past lessons, plus the new concepts for today. Do not introduce random unlearned words without translating them.
-    3. Include sections: # Day {day_num} - {topic}, ## Grammar/Concept, ## Examples, ## Reading Practice.
-    4. MUST DO: At the absolute end of the document, include these two exact sections to summarize the lesson:
-       ## Core Vocabulary (List all new words introduced today with their English translation)
-       ## Key Sentences (List all practical Arabic sentences used in today's lesson with English translations)
-    5. Do not include conversational filler outside of the Markdown content.
-    6. For arabic text use Harakat and Tanween for study purpose
+    2. TEACH IN ENGLISH. All grammar explanations, concepts, and instructions MUST be written in clear English. 
+    3. Use Arabic ONLY for the target vocabulary, example sentences, and reading practice. 
+    4. ONLY use Arabic vocabulary and grammar concepts the student has already learned in the past lessons, plus the new concepts for today. Do not introduce random unlearned words without translating them.
+    5. Include sections: # Day {day_num} - {topic}, ## Grammar/Concept, ## Examples, ## Reading Practice.
+    6. MUST DO: At the absolute end of the document, include these two exact sections to summarize the lesson:
+       ## 📚 Core Vocabulary (List all new Arabic words introduced today with their English translation)
+       ## 🗣️ Key Sentences (List practical Arabic sentences used in today's lesson with English translations)
+    7. Do not include conversational filler outside of the Markdown content.
+    8. For all Arabic text, strictly use Harakat (تَشْكِيل) and Tanween to aid the student's pronunciation.
     """
     
     for attempt in range(retries):
