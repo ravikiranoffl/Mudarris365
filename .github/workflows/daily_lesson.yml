@@ -1,4 +1,4 @@
-name: Muddaris Fusha 365 Daily Agent
+name: Mudarris Al-Arab Agent
 
 on:
   schedule:
@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run lesson generator
+      - name: Lesson Generator
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
@@ -34,7 +34,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "Muddaris Bot"
+          git config --local user.name "Muddaris365 Agent"
           git add lessons/ last_lesson.json
           git commit -m "Automated MSA Lesson Generation" || echo "No changes to commit"
           git push
